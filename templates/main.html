@@ -15,6 +15,53 @@
         <div class="ui content" style="color:white">
             <p>Willkommen {{username}}</p>
     </div>
+    <div style="margin-top:50px" class="ui center aligned container">
+        <p style="color:white">Die Mobi App zeigt dir verschiedene alternative Verkehrsverbindungen f&uumlr deine Strecke.
+            <br> Bitte gib die Details zu deinem Fahrtwunsch hier ein:</p>
+        <form action="/search" method="POST">
+            <div class="ui form">
+            <div class="field">
+            <label style="color:white">Startadresse</label>
+            <input type="text" name="start" placeholder="Startadresse">
+            </div>
+            <div class="field">
+            <label style="color:white">Zieladresse</label>
+            <input type="text" name="ziel" placeholder="Zieladresse">
+            </div>
+            <div class="field">
+            <label style="color:white">Abfahrtszeit</label>
+            <input type="time" name="abfahrtszeit" placeholder="Abfahrtszeit">
+            </div>
+            <div class="field">
+            <label style="color:white">Datum</label>
+            <input type="date" name="datum" placeholder="Datum">
+            </div>
+            
+                <div class="grouped fields">
+                  <label>Welche Verkehrsmittel m&oumlchtest du nutzen?</label>
+                  <div class="field">
+                    <div class="ui radio checkbox">
+                      <input type="radio" name="bahn" value="bahn" id="check1">
+                      <label>Bahn</label>
+                    </div>
+                    
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="bus" value="bus" id="check2">
+                        <label>Bus</label>
+                      </div>
+                      
+                      <div class="ui radio checkbox">
+                        <input type="radio" name="car" value="car" id="check3">
+                        <label>Carsharing</label>
+                      </div>
+                      
+                      <div class="ui radio checkbox">
+                        <input type="radio" name="rad" value="bike" id="check4">
+                        <label>Fahrrad</label>
+                      </div>
+                  </div>
+            <button class="ui button" type="submit">Anfrage starten</button>
+        </form>
     </div>
 
 </body>

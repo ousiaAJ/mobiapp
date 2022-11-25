@@ -14,11 +14,6 @@ db = mongodb_client.db
 def index():
     return render_template('index.html')
 
-@app.route('/main')
-def main():
-    return render_template('main.html')
-
-
 @app.route('/login', methods=['POST'])
 def login():
     username = request.form['username']
@@ -26,13 +21,16 @@ def login():
     user = db.users.find_one({'username': username})
     if user:
         if user['password'] == password:
-            return redirect(url_for('main'))
-            #return "Welcome " + username
+            return redirect(url_for('main', username=username))
         else:
             return 'Invalid password'
     else:
         return 'Invalid username'
 
+@app.route('/<username>')
+def main(username):
+    return render_template('main.html', username=username)
+    
 
 @app.route('/registerform')
 def registerform():
