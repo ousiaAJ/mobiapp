@@ -3,9 +3,10 @@ from flask import render_template, redirect, url_for, session, flash, abort
 from flask import request
 from flask_pymongo import PyMongo
 from secrets import token_urlsafe
+from passlib.hash import pbkdf2_sha256
+import functools
 
 key = token_urlsafe(16)
-print(key)
 
 
 app = Flask(__name__)
@@ -15,49 +16,75 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017/userDBFlask"
 mongodb_client = PyMongo(app)
 db = mongodb_client.db
 
+def login_required(route):
+    @functools.wraps(route)
+    def route_wrapper(*args, **kwargs):
+        if not session.get("username"):
+            return redirect(url_for('index'))
+        return route(*args, **kwargs)
+    return route_wrapper
+
+
+# Hauptrouten
 @app.route('/')
 def index():
     if session.get("username"):
         return render_template("main.html", username=session.get("username"))
     return render_template('index.html')
 
+@app.get('/main')
+@login_required
+def protected():
+    #if not session.get("username"):
+    #    return redirect(url_for('index'))
+    return render_template("main.html", username=session.get("username"))
+
+
+# NUTZERVERWALTUNG
+
+# Login
 @app.route('/login', methods=['POST'])
 def login():
     username = request.form['username']
     password = request.form['password']
     user = db.users.find_one({'username': username})
     if user:
-        if user['password'] == password:
+        #if user['password'] == password:
+        if pbkdf2_sha256.verify(password, user['password']):
             session["username"] = username
             return render_template("main.html", username=session.get("username"))
         else:
-            return render_template('index.html', error='Invalid password')
+            flash ("Falsches Passwort")
+            return render_template('index.html')
     else:
-        return render_template('register.html', error='Invalid username')
+        flash ("User nicht bekannt")
+        return render_template('register.html')
 
-@app.get('/main')
-def protected():
-    if not session.get("username"):
-        return redirect(url_for('index'))
-    if session.get("username"):
-        return render_template("main.html", username=session.get("username"))
-    
-    
 
+# Registrierung
+    
 @app.route('/registerform')
 def registerform():
     return render_template('register.html')
-
-
 @app.route('/register', methods=['POST'])
 def register():
     surname = request.form['surname']
     name = request.form['name']
     username = request.form['username']
-    password = request.form['password']  
+    password = pbkdf2_sha256.hash(request.form['password'])
+    print(password)
     db.users.insert_one({'surname': surname, 'name': name, 'username': username, 'password': password})
     session["username"] = username
+    flash("You are now registered and can log in", "success")
     return render_template("main.html", username=session.get("username"))
+
+# Logout
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,3 +1,5 @@
+{% from "macros/nav.html" import header %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +14,11 @@
     <div style ="margin-top:50px" class="ui container">
     <h1  style="color:white; font-size: xx-large;" class="ui center aligned header"> Mobi App</h1>
     <div style="margin-top:50px" class="ui center aligned container">
-        <div class="ui content" style="color:white">
+        <div class="ui header" style="color:white">
             <p>Willkommen {{username}}</p>
     </div>
+    
+    
     <div style="margin-top:50px" class="ui center aligned container">
         <p style="color:white">Die Mobi App zeigt dir verschiedene alternative Verkehrsverbindungen f&uumlr deine Strecke.
             <br> Bitte gib die Details zu deinem Fahrtwunsch hier ein:</p>
@@ -62,8 +66,9 @@
                   </div>
             <button class="ui button" type="submit">Anfrage starten</button>
         </form>
-        <a href="/main" class="ui red button">SAFE</a>
+        
     </div>
+    <a href="/logout" class="ui red button">Logout</a>
 
 </body>
 </html>

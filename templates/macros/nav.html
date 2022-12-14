@@ -1,0 +1,18 @@
+{% macro header(username, theme) %}
+<haeder class="ui header">
+    <a href "{{ url_for('main.html') }}" class="header__logo">
+        <span class ="logo__name">MobiApp</span>
+    </a>
+    <nav class="nav">
+        %if not username%
+
+        % else %
+
+        % endif %if
+
+    </nav>
+</header>
+
+{% endmacro %}
+
+
