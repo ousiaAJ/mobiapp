@@ -22,7 +22,7 @@
     <div style="margin-top:50px" class="ui center aligned container">
         <p style="color:white">Die Mobi App zeigt dir verschiedene alternative Verkehrsverbindungen f&uumlr deine Strecke.
             <br> Bitte gib die Details zu deinem Fahrtwunsch hier ein:</p>
-        <form action="/search" method="POST">
+        <form action="/dashboard" method="POST">
             <div class="ui form">
             <div class="field">
             <label style="color:white">Startadresse</label>
@@ -34,14 +34,14 @@
             </div>
             <div class="field">
             <label style="color:white">Abfahrtszeit</label>
-            <input type="time" name="abfahrtszeit" placeholder="Abfahrtszeit">
+            <input type="time" name="departure" placeholder="Abfahrtszeit">
             </div>
             <div class="field">
             <label style="color:white">Datum</label>
-            <input type="date" name="datum" placeholder="Datum">
+            <input type="date" name="date" placeholder="Datum">
             </div>
             
-                <div class="grouped fields">
+<!--                 <div class="grouped fields">
                   <label style="color:white">Welche Verkehrsmittel m&oumlchtest du nutzen?</label>
                   <div class="field">
                     <div class="ui radio checkbox">
@@ -64,7 +64,7 @@
                         <label>Fahrrad</label>
                       </div>
                   </div>
-                  <br>
+                  <br> -->
                   <button class="ui button" type="submit">Anfrage starten</button>
         </form>
         

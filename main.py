@@ -7,6 +7,7 @@ from passlib.hash import pbkdf2_sha256
 import functools
 import http.client
 import json
+from google import *
 
 
 key = token_urlsafe(16)
@@ -39,15 +40,21 @@ def index():
 
 @app.get('/main')
 @login_required
-def protected():
+def input():
     #if not session.get("username"):
     #    return redirect(url_for('index'))
     return render_template("main.html", username=session.get("username"))
    
 
-@app.route ('/dashboard')
+@app.route ('/dashboard', methods=['POST'])
 @login_required
 def dashboard():
+    start = request.form['start']
+    ziel = request.form['ziel']
+    time= request.form['departure']
+    date= request.form ['date']
+    
+    print(start, ziel, time, date)
     return render_template('dashboard.html')
 
 # NUTZERVERWALTUNG
@@ -58,7 +65,6 @@ def login():
     username = request.form['username']
     password = request.form['password']
     user = db.users.find_one({'username': username})
-    DB_API()
     if user:
         #if user['password'] == password:
         if pbkdf2_sha256.verify(password, user['password']):
