@@ -7,10 +7,12 @@
     <title>Dashboard</title>
 </head>
 <body>
-    {% for message in get_flashed_messages() %}
-    <div class="ui info message">
-        <p style="color: black">{{ message }}</p>
+    <div>
+        <p>{{success}}</p>
     </div>
-    {% endfor %}
+    <div>
+        <p style="color: black">{{ result }}</p>
+    </div>
+    
 </body>
 </html>

@@ -53,9 +53,16 @@ def dashboard():
     ziel = request.form['ziel']
     time= request.form['departure']
     date= request.form ['date']
+    mode = "transit"
+    datetime = date + " " + time
+    print (datetime)
+    succ = "Abruf erfolgreich"
     
-    print(start, ziel, time, date)
-    return render_template('dashboard.html')
+    result = direction(start, ziel, mode, datetime)
+    print(result)
+    res = json.loads(result)
+    res = res['routes'][0]['legs'][0]['steps'][0]['distance']['text']
+    return render_template('dashboard.html', result=res, success=succ)
 
 # NUTZERVERWALTUNG
 
