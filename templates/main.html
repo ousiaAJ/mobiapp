@@ -13,6 +13,11 @@
 <body style="background-color:skyblue">
     <div style ="margin-top:50px" class="ui container">
     <h1  style="color:white; font-size: xx-large;" class="ui center aligned header"> Mobi App</h1>
+    {% for message in get_flashed_messages() %}
+    <div class="ui info message">
+        <p style="color: red">{{ message }}</p>
+    </div>
+    {% endfor %}
     <div style="margin-top:50px" class="ui center aligned container">
         <div class="ui header" style="color:white">
             <p>Willkommen {{username}}</p>
@@ -47,7 +52,7 @@
                   <div class="field">
                     <p>
                     <div class="ui radio checkbox">
-                      <input type="radio" name="mode" value="bahn" id="check1">
+                      <input type="radio" name="mode" value="transit" id="check1">
                       <label>Bahn</label>
                     </div>
                     </p>
@@ -59,13 +64,13 @@
                     </p>
                     <p> 
                       <div class="ui radio checkbox">
-                        <input type="radio" name="mode" value="car" id="check3">
+                        <input type="radio" name="mode" value="driving" id="check3">
                         <label>Carsharing</label>
                       </div>
                     </p>
                     <p>  
                       <div class="ui radio checkbox">
-                        <input type="radio" name="mode" value="bike" id="check4">
+                        <input type="radio" name="mode" value="bicycling" id="check4">
                         <label>Fahrrad</label>
                       </div>
                     </p>
