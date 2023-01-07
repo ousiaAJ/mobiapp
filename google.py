@@ -5,9 +5,12 @@ import json
 
 def direction(origin, destination, mode, when):
 
+    print(mode)
+    if "driving" in mode:
+        print("Carsharing")
+
     when = datetime.strptime(when, '%Y-%m-%d %H:%M')
     timestamp = int(datetime.timestamp(when))
-    print(timestamp)
 
     url = f"https://maps.googleapis.com/maps/api/directions/json?origin={origin}&destination={destination}&mode={mode}&transit_mode=tram&departure_time={timestamp}&key=AIzaSyB238rM6g9FmFf1EGDa40AOXXdG2wtcc9U"
 
@@ -15,11 +18,12 @@ def direction(origin, destination, mode, when):
     headers = {}
     print(url)
     response = requests.request("GET", url, headers=headers, data=payload)
-
+    print(response.status_code)
     return(response.text)
 
 #Launcher
-#direction("Düsseldorf", "Koblenz", "transit", "21/Dec/2022 14:00:00")
+#result=direction("Düsseldorf", "Koblenz", "transit", "2023-01-22 14:00")
+#print(result)
 
 
 def time_helper(ts):

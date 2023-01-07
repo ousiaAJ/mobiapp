@@ -8,6 +8,7 @@ import functools
 import http.client
 import json
 from google import *
+from share_calc import *
 
 
 key = token_urlsafe(16)
@@ -52,17 +53,15 @@ def dashboard():
     start = request.form['start']
     ziel = request.form['ziel']
     time= request.form['departure']
-    date= request.form ['date']
-    mode = "transit"
+    date= request.form['date']
+    mode = request.form.getlist('mode')
     datetime = date + " " + time
-    print (datetime)
     succ = "Abruf erfolgreich"
     
-    if start and ziel and time and datetime:
+    if start and ziel and time and datetime and mode:
         result = direction(start, ziel, mode, datetime)
-    #print(result)
         res = json.loads(result)
-        res = res['routes'][0]['legs'][0]['steps'][0]['distance']['text']
+        res = res['routes'][0]
         return render_template('dashboard.html', result=res, success=succ)
     else:
         flash("Bitte alle Felder ausfüllen")
@@ -122,15 +121,19 @@ def logout():
     return redirect(url_for('index'))
 
 
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
     app.run(debug=True)
 
-    
+
+#Parkhaus
+    """ if mode == 'transit':
+            result = direction(start, ziel, mode, datetime)
+            res = json.loads(result)
+            res = res['routes'][0]
+            return render_template('dashboard.html', result=res, success=succ)
+        elif mode == 'driving':
+            result = direction(start, ziel, mode, datetime)
+            res = json.loads(result)
+            dauer = res['routes'][0]
+            km = res[''][0]
+            preis = auslesenPreis("xs", dauer, "j", km) """
