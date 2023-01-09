@@ -5,10 +5,6 @@ import json
 
 def direction(origin, destination, mode, when):
 
-    print(mode)
-    if "driving" in mode:
-        print("Carsharing")
-
     when = datetime.strptime(when, '%Y-%m-%d %H:%M')
     timestamp = int(datetime.timestamp(when))
 
@@ -16,9 +12,9 @@ def direction(origin, destination, mode, when):
 
     payload={}
     headers = {}
-    print(url)
+   # print(url)
     response = requests.request("GET", url, headers=headers, data=payload)
-    print(response.status_code)
+    #print(response.status_code)
     return(response.text)
 
 #Launcher

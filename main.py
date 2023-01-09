@@ -7,8 +7,7 @@ from passlib.hash import pbkdf2_sha256
 import functools
 import http.client
 import json
-from google import *
-from share_calc import *
+from logic import *
 
 
 key = token_urlsafe(16)
@@ -59,10 +58,10 @@ def dashboard():
     succ = "Abruf erfolgreich"
     
     if start and ziel and time and datetime and mode:
-        result = direction(start, ziel, mode, datetime)
-        res = json.loads(result)
-        res = res['routes'][0]
-        return render_template('dashboard.html', result=res, success=succ)
+        result = selectSource(start, ziel, mode, datetime)
+        #res = result.get_text()
+        #res = res['routes'][0]
+        return render_template('dashboard.html', result=result, success=succ)
     else:
         flash("Bitte alle Felder ausfüllen")
         return render_template('main.html', username=session.get("username"))
