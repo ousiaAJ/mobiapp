@@ -8,24 +8,24 @@ req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
 def scrape_KVB():
     response = urlopen(req).read()
     soup = BeautifulSoup(response, 'html.parser')
-    rows = soup.findChildren(['main'])
+    rows = soup.find_all('div', class_='container')
+    #print(rows)
 
     for row in rows:
-        cells = row.findChildren('p')
+        cells = row.findChildren(class_='fliesstext')
         for cell in cells:
-            text=cell.get_text()
+            text=cell.text
         
     for row in rows:
-        cells = row.findChildren('td')
+        cells = row.findChildren(class_='table table-striped')
         for cell in cells:
-            text2=cell.get_text()
-    
-    
-    return text, text2
+            text2=cell.text
+    answer = text + text2
+    return answer
 
 
-""" result = scrape_KVB()
-print (result) """
+#result = scrape_KVB()
+#print (result)
 
 
 

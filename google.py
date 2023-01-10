@@ -4,17 +4,17 @@ from datetime import datetime
 import json
 
 def direction(origin, destination, mode, when):
-
+    mo1 = ','.join(map(str,mode))
     when = datetime.strptime(when, '%Y-%m-%d %H:%M')
     timestamp = int(datetime.timestamp(when))
 
-    url = f"https://maps.googleapis.com/maps/api/directions/json?origin={origin}&destination={destination}&mode={mode}&transit_mode=tram&departure_time={timestamp}&key=AIzaSyB238rM6g9FmFf1EGDa40AOXXdG2wtcc9U"
+    url = f"https://maps.googleapis.com/maps/api/directions/json?origin={origin}&destination={destination}&mode={mo1}&departure_time={timestamp}&key=AIzaSyB238rM6g9FmFf1EGDa40AOXXdG2wtcc9U"
 
     payload={}
     headers = {}
-   # print(url)
+    print(url)
     response = requests.request("GET", url, headers=headers, data=payload)
-    #print(response.status_code)
+    print(response.text)
     return(response.text)
 
 #Launcher

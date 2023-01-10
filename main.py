@@ -59,8 +59,6 @@ def dashboard():
     
     if start and ziel and time and datetime and mode:
         result = selectSource(start, ziel, mode, datetime)
-        #res = result.get_text()
-        #res = res['routes'][0]
         return render_template('dashboard.html', result=result, success=succ)
     else:
         flash("Bitte alle Felder ausfüllen")

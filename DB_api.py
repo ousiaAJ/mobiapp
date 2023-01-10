@@ -21,7 +21,7 @@ def DB_API():
         code = location[0]["id"]
         timetable(code)
 
-    def timetable(loc):
+    def timetable(loc, datetime):
         conn = http.client.HTTPSConnection("apis.deutschebahn.com")
         print(loc)
         date = "2023-02-20"
@@ -31,7 +31,7 @@ def DB_API():
         'DB-Api-Key': "a3854011cb83292f31f11cfa8da36ffe",
         'accept': "application/json"
         }
-        url = f"/db-api-marketplace/apis/fahrplan/v1/departureBoard/{loc}?date={date}{time}"
+        url = f"/db-api-marketplace/apis/fahrplan/v1/departureBoard/{loc}?date={datetime}"
         print (url)
         conn.request("GET", url, headers=headers)
 

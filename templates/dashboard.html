@@ -8,12 +8,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 </head>
-<body>
+<body style="background-color:skyblue">
     <div>
-        <p>{{success}}</p>
+        <p style="color:white">Status: {{success}}</p>
     </div>
     <div>
-        <p style="color: black">{{ result }}</p>
+        <h2 style="color:white; font-size: x-large;" class="ui center aligned header">Deine Verbindungen</h2>
+        {% for item in result %}
+        <p style="color: black">{{ item | striptags }}</p>
+        {% endfor %}
     </div>
     <div style="margin-top:150px" class="ui center aligned container">
         <a href="/main" class="ui red button">Neue Anfrage</a>
