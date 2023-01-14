@@ -16,7 +16,6 @@ def auslesenPreis(klasse, dauer, vers, km):
     
     for row in csv_reader_object:
         dauer = str(dauer) + " Stunden"
-        print(dauer)
         val1 = row.get(dauer)
         kmp = row.get("km")
     if vers == "J":

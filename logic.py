@@ -8,11 +8,16 @@ def selectSource(start, ziel, mode, datetime):
         result = carshare(start, ziel, mode, datetime)
     elif "transit" in mode:
         result = train(start, ziel, mode, datetime)
+    elif "bus" in mode:
+        result = bus(start, ziel, mode, datetime)
+    elif "bicycling" in mode:
+        result = bike(start, ziel, mode, datetime)
     return result
         
 
 def carshare(start, ziel, mode, datetime):
-    result = direction(start, ziel, mode, datetime)
+    mo2=""
+    result = direction(start, ziel, mode, mo2, datetime)
     res = json.loads(result)
     km = res['routes'][0]['legs'][0]['distance']['value']
     km = round(km/1000)
@@ -27,7 +32,8 @@ def carshare(start, ziel, mode, datetime):
     return answer1, answer2
 
 def train(start, ziel, mode, datetime):
-    result = direction(start, ziel, mode, datetime)
+    mo2="rail"
+    result = direction(start, ziel, mode, mo2, datetime)
     res=json.loads(result)
     time = res['routes'][0]['legs'][0]['duration']['value']
     time = int(time/60)
@@ -37,6 +43,27 @@ def train(start, ziel, mode, datetime):
     answer2 = scrape_KVB()
     return answer1, answer2
 
-    
+def bus(start, ziel, mode, datetime):
+    mode=["transit"]
+    mo2="bus"
+    result = direction(start, ziel, mode, mo2, datetime)
+    res=json.loads(result)
+    time = res['routes'][0]['legs'][0]['duration']['value']
+    time = int(time/60)
+    dauer = str(time)
+    ankunft = res['routes'][0]['legs'][0]['arrival_time']['text']
+    answer1 = "Das gewählte Verkehrsmittel ist Bus." + " Die Fahrtdauer beträgt " + dauer + " Minuten. " + "Ankunft ist um: " + ankunft
+    answer2 = scrape_KVB()
+    return answer1, answer2
+
+def bike(start, ziel, mode, datetime):
+    mo2=""
+    result = direction(start, ziel, mode, mo2, datetime)
+    res=json.loads(result)
+    km = res['routes'][0]['legs'][0]['distance']['text']
+    dauer = res['routes'][0]['legs'][0]['duration']['text']
+    answer1 = "Das gewählte Verkehrsmittel ist Fahrrad." + " Die Strecke beträgt " + km + " Minuten. "
+    answer2 = "Fahrtdauer beträgt: " + dauer
+    return answer1, answer2
 
 
