@@ -1,9 +1,10 @@
 from google import *
 from share_calc import *
 from scraper import *
+from nextbike import *
 
 
-def selectSource(start, ziel, mode, datetime):
+def selectSource(start, ziel, mode, datetime, selection):
     if "driving" in mode:
         result = carshare(start, ziel, mode, datetime)
     elif "transit" in mode:
@@ -12,6 +13,9 @@ def selectSource(start, ziel, mode, datetime):
         result = bus(start, ziel, mode, datetime)
     elif "bicycling" in mode:
         result = bike(start, ziel, mode, datetime)
+    elif "next" in mode:
+        #print(start, selection)
+        result = next(selection)
     return result
         
 
@@ -66,4 +70,12 @@ def bike(start, ziel, mode, datetime):
     answer2 = "Fahrtdauer beträgt: " + dauer
     return answer1, answer2
 
-
+def next(selection):
+    result=nextbike(selection)
+    if result == None:
+        answer1 = "Leihstation " + selection
+        answer2 = "Leider kein Fahrrad verfügbar"
+    else:
+        answer1 = "Anzahl der verfügbaren Fahrräder: "
+        answer2 = result
+    return answer1, answer2

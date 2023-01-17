@@ -21,5 +21,6 @@ def nextbike(start_list):
     bike = places.get("bikes_available_to_rent")
     return bike
 
-result = nextbike("Bahnhof Mülheim")
-print(result)
+#Launcher
+#result = nextbike("Aldi Sürth")
+#print(result)

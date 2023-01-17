@@ -71,12 +71,114 @@
                     <p>  
                       <div class="ui checkbox">
                         <input type="checkbox" name="mode" value="bicycling">
-                        <label>Fahrrad</label>
+                        <label>Eigenes Fahrrad</label>
+                      </div>
+                    </p>
+                    <br>
+                    <p>  
+                      <div class="ui checkbox">
+                        <input type="checkbox" name="mode" value="next">
+                        <label>Leihrad</label>
                       </div>
                     </p>
                   </div>
-                  <br>
-                  <button class="ui button" type="submit">Anfrage starten</button>
+                  
+                  <p> Bitte wähle eine Fahrrad Leihstation:</p>
+
+
+                  <select class="ui search dropdown" name="selection">
+                    <option value="">Station</option>
+                    <option value="KVB Hauptverwaltung">KVB Hauptverwaltung</option>
+                    <option value="Rheinenergie Parkgürtel">Rheinenergie Parkgürtel</option>
+                    <option value="Uni Boulevard">Uni Boulevard</option>
+                    <option value="Neusser Straße / Gürtel">Neusser Straße / Gürtel</option>
+                    <option value="Maritim">Maritim</option>
+                    <option value="Humanwissenschaftliche Fakultät">Humanwissenschaftliche Fakultät</option>
+                    <option value="Mobilstation Severinswall">Mobilstation Severinswall</option>
+                    <option value="Mobilstation Josephstraße">Mobilstation Josephstraße</option>
+                    <option value="Stegerwaldsiedlung">Stegerwaldsiedlung</option>
+                    <option value="Charles-de-Gaulle Platz">Charles-de-Gaulle Platz</option>
+                    <option value="Bahnhof Mülheim">Bahnhof Mülheim</option>
+                    <option value="Seidmacherinnengäßchen">Seidmacherinnengäßchen</option>
+                    <option value="Gürzenich">Gürzenich</option>
+                    <option value="Große Sandkaul">Große Sandkaul</option>
+                    <option value="Marspfortengasse">Marspfortengasse</option>
+                    <option value="Bushaltestelle Niehl - Betriebshof">Bushaltestelle Niehl - Betriebshof</option>
+                    <option value="Bürgerpark Kalk">Bürgerpark Kalk</option>
+                    <option value="Breslauer Str./Benfleetstraße">Breslauer Str./Benfleetstraße</option>
+                    <option value="Feuerbachstraße/Böcklinstr">Feuerbachstraße/Böcklinstr</option>
+                    <option value="(H) Widdersdorf">(H) Widdersdorf</option>
+                    <option value="(H) Lübecker Str">(H) Lübecker Str</option>
+                    <option value="RTL Picassoplatz">RTL Picassoplatz</option>
+                    <option value="Rispenweg/Leinsamenweg">Rispenweg/Leinsamenweg</option>
+                    <option value="(H) Weiden Zentrum">(H) Weiden Zentrum</option>
+                    <option value="Bushaltestelle, Wiener Weg">Bushaltestelle, Wiener Weg</option>
+                    <option value="Birkenallee, Junkersdorf">Birkenallee, Junkersdorf</option>
+                    <option value="Longericher Str/Hansenstraße">Longericher Str/Hansenstraße</option>
+                    <option value="(H) Auguste-Kowalski-Str.">(H) Auguste-Kowalski-Str.</option>
+                    <option value="Bruder-Klaus-Platz">Bruder-Klaus-Platz</option>
+                    <option value="(H) Siedlung Mielenforst">(H) Siedlung Mielenforst</option>
+                    <option value="(H) Buschfeldstr.">(H) Buschfeldstr.</option>
+                    <option value="(H) Im Wirtskamp">(H) Im Wirtskamp</option>
+                    <option value="Johannesweg/Mainweg">Johannesweg/Mainweg</option>
+                    <option value="Adolf-Kober-Straße/Moses-Hess-Straße">Adolf-Kober-Straße/Moses-Hess-Straße</option>
+                    <option value="Düsseldorfer Str./Raumannskaul">Düsseldorfer Str./Raumannskaul</option>
+                    <option value="Holweide S-Bahn">Holweide S-Bahn</option>
+                    <option value="(H) Leuchterstr.">(H) Leuchterstr.</option>
+                    <option value="(H) Odenthaler Str.">(H) Odenthaler Str.</option>
+                    <option value="(H) Maria-Himmelfahrt-Str.">(H) Maria-Himmelfahrt-Str.</option>
+                    <option value="Von-Ketteler-Straße/Heinrich-Brauns-Straße">Von-Ketteler-Straße/Heinrich-Brauns-Straße</option>
+                    <option value="Vogelsanger Markt">Vogelsanger Markt</option>
+                    <option value="Mengenich, Heinrich-Mann-Straße">Mengenich, Heinrich-Mann-Straße</option>
+                    <option value="Butzweiler Hof">Butzweiler Hof</option>
+                    <option value="Westend - Clemens-Hastrich-Straße">Westend - Clemens-Hastrich-Straße</option>
+                    <option value="Obenmarspforten">Obenmarspforten</option>
+                    <option value="Fühlinger See/Stallagsbergweg">Fühlinger See/Stallagsbergweg</option>
+                    <option value="Blumenberg S-Bahn">Blumenberg S-Bahn</option>
+                    <option value="Teufelsbergstraße/Kallbergstraße">Teufelsbergstraße/Kallbergstraße</option>
+                    <option value="(H) Bückebergstr.">(H) Bückebergstr.</option>
+                    <option value="Rösrather Str./Gröppersgasse">Rösrather Str./Gröppersgasse</option>
+                    <option value="Nikolausstr./Ziegeleiweg">Nikolausstr./Ziegeleiweg</option>
+                    <option value="Königsberger Str/Solinger Strasse">Königsberger Str/Solinger Strasse</option>
+                    <option value="(H) Grengel Mauspfad">(H) Grengel Mauspfad</option>
+                    <option value="Lilienweg - Wendehammer">Lilienweg - Wendehammer</option>
+                    <option value="Wahn S-Bahn">Wahn S-Bahn</option>
+                    <option value="Zündorf Ranzeler Str.">Zündorf Ranzeler Str.</option>
+                    <option value="Vor den Feldern/Im Bodesfeld">Vor den Feldern/Im Bodesfeld</option>
+                    <option value="Giesdorfer Str./Krähenweg">Giesdorfer Str./Krähenweg</option>
+                    <option value="(H) Weißer Hauptstraße">(H) Weißer Hauptstraße</option>
+                    <option value="Adolf-Menzel-Str./Lukas-Cranach-Str.">Adolf-Menzel-Str./Lukas-Cranach-Str.</option>
+                    <option value="KAUFLAND Boltensternstraße">KAUFLAND Boltensternstraße</option>
+                    <option value="LIDL Bonner Wall">LIDL Bonner Wall</option>
+                    <option value="WDR Studios Bocklemünd">WDR Studios Bocklemünd</option>
+                    <option value="Bahnhof Mülheim Rückgabestation A">Bahnhof Mülheim Rückgabestation A</option>
+                    <option value="Bahnhof Mülheim Rückgabestation B">Bahnhof Mülheim Rückgabestation B</option>
+                    <option value="LIDL Leyendeckerstraße">LIDL Leyendeckerstraße</option>
+                    <option value="Rückgabestation Wumbo">Rückgabestation Wumbo</option>
+                    <option value="Segro Nord">Segro Nord</option>
+                    <option value="Aldi Bilderstöckchen">Aldi Bilderstöckchen</option>
+                    <option value="Aldi Sürth">Aldi Sürth</option>
+                    <option  alue="Neumarkt Nord Rückgabestation">Neumarkt Nord Rückgabestation</option>
+                    <option value="Neumarkt West Rückgabestation">Neumarkt West Rückgabestation</option>
+                    <option value="Breslauer Platz Rückgabestation A">Breslauer Platz Rückgabestation A</option>
+                    <option value="Breslauer Platz Rückgabestation B">Breslauer Platz Rückgabestation B</option>
+                    <option value="Rudolfplatz Rückgabestation A">Rudolfplatz Rückgabestation A</option>
+                    <option value="Rudolfplatz Rückgabestation B">Rudolfplatz Rückgabestation B</option>
+                    <option value="Rudolfplatz Rückgabestation C">Rudolfplatz Rückgabestation C</option>
+                    <option value="St Andreas Rückgabestation">St Andreas Rückgabestation</option>
+                    <option value="Hst. Junkersdorf (R)">Hst. Junkersdorf (R)</option>
+                    <option value="Hst. Heinrich-Lübke-Ufer (R)">Hst. Heinrich-Lübke-Ufer (R)</option>
+                    <option value="Hst. Bayernthalgürtel (R)">Hst. Bayernthalgürtel (R)</option>
+                    <option value="Hst. Berliner Str. (R)">Hst. Berliner Str. (R)</option>
+                    <option value="Claudius Therme (R)">Claudius Therme (R)</option>
+                    <option value="Bf Longerich">Bf Longerich</option>
+                    <option value="S Volkhovener Weg">S Volkhovener Weg</option>
+                    <option value="S Chorweiler">S Chorweiler</option>
+                    <option value="Bf Lövenich">Bf Lövenich</option>
+                  </select>
+                  <div style="margin-top:20px" class="ui center aligned container">
+                  <button class="ui red button" type="submit">Anfrage starten</button>
+                  </div>
         </div>
         </form>
         
