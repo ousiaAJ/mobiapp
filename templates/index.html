@@ -10,29 +10,33 @@
 </head>
 <body style="background-color:skyblue">
     {% for message in get_flashed_messages() %}
-    <div class="ui info message">
+    <div class="ui info message" style="text-align: center; font-size: large;">
         <p style="color: red">{{ message }}</p>
     </div>
     {% endfor %}
     <div style ="margin-top:50px" class="ui container">
-    <h1  style="color:white; font-size: xx-large;" class="ui center aligned header"> Willkommen zur Mobi App</h1>
+    <h1  style="color:white; font-size: xx-large; margin-bottom: 50px" class="ui center aligned header"> Willkommen zur Mobi App</h1>
+    <img class="ui centered small rounded image" src="../static/title.png">
     <div style="margin-top:50px" class="ui center aligned container">
+        <p class="middle aligned content" style="border:5px; border-color:firebrick; border-style: solid; border-radius: 5px;background-color: aliceblue; padding: 10px; margin: 20 0 20 0px">
+            Bitte melde dich an oder klicke unten auf den Knopf "Registrieren"</p>
         <form action="/login" method="POST">
             <div class="ui form">
             <div class="field">
-            <label style="color:white">Benutzername</label>
+            <label style="color:white; font-size: large;">Benutzername</label>
             <input type="text" name="username" placeholder="Benutzername">
             </div>
             <div class="field">
-            <label style="color:white">Passwort</label>
+            <label style="color:white; font-size: large">Passwort</label>
             <input type="password" name="password" placeholder="Passwort">
             </div>
-            <button class="ui button" type="submit">Login</button>
+            <button class="ui button" type="submit">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
             </div>
         </form>
     </div>
     <div style="margin-top:50px" class="ui center aligned container">
-    <a href="/registerform" class="ui red button">Register</a>
+    <a href="/registerform" class="ui red button">Registrieren</a>
     </div>
     </div>
     </div>

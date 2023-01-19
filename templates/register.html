@@ -10,7 +10,7 @@
 </head>
 <body style="background-color:skyblue">
     {% for message in get_flashed_messages() %}
-    <div class="ui info message">
+    <div class="ui info message" style="text-align: center; font-size: large;">
         <p style="color: red">{{ message }}</p>
     </div>
     {% endfor %}
@@ -35,10 +35,12 @@
             <label style="color:white">Passwort</label>
             <input type="password" name="password" placeholder="Passwort">
             </div>
-            <button class="ui button" type="submit">Register</button>
+            <button class="ui button" type="submit">Registrierung</button>
             </div>
             </form>
             </div>
+            <div style="margin-top:50px" class="ui center aligned container">
+            <a href="/" class="ui red button">Login</a>
 
     </div>
     </div>
