@@ -56,11 +56,11 @@ def dashboard():
     mode = request.form.getlist('mode')
     selection = request.form.get('selection')
     datetime = date + " " + time
-    succ = "Abruf erfolgreich"
+    print("Abruf erfolgreich")
     
     if start and ziel and time and datetime and mode:
         result = selectSource(start, ziel, mode, datetime, selection)
-        return render_template('dashboard.html', result=result, success=succ)
+        return render_template('dashboard.html', result=result)
     else:
         flash("Bitte alle Felder ausfüllen")
         return render_template('main.html', username=session.get("username"))
@@ -122,16 +122,3 @@ def logout():
 if __name__ == '__main__':
     app.run(debug=True)
 
-
-#Parkhaus
-    """ if mode == 'transit':
-            result = direction(start, ziel, mode, datetime)
-            res = json.loads(result)
-            res = res['routes'][0]
-            return render_template('dashboard.html', result=res, success=succ)
-        elif mode == 'driving':
-            result = direction(start, ziel, mode, datetime)
-            res = json.loads(result)
-            dauer = res['routes'][0]
-            km = res[''][0]
-            preis = auslesenPreis("xs", dauer, "j", km) """

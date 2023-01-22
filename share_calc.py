@@ -10,9 +10,7 @@ def auslesenPreis(klasse, dauer, vers, km):
     elif klasse == "M":
         csvdatei = open("preiseM.csv")
         csv_reader_object = csv.DictReader(csvdatei, delimiter=";")        
-    #if "Tag" in dauer:
     vers = vers
-    
     
     for row in csv_reader_object:
         dauer = str(dauer) + " Stunden"
