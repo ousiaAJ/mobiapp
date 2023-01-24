@@ -56,10 +56,11 @@ def dashboard():
     mode = request.form.getlist('mode')
     selection = request.form.get('selection')
     datetime = date + " " + time
-    print("Abruf erfolgreich")
     
     if start and ziel and time and datetime and mode:
         result = selectSource(start, ziel, mode, datetime, selection)
+        print("Abruf erfolgreich")
+        #print(result)
         return render_template('dashboard.html', result=result)
     else:
         flash("Bitte alle Felder ausfüllen")

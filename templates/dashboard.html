@@ -9,16 +9,34 @@
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 </head>
 <body style="background-color:skyblue">
+
+
+    <div>
+        <h1 style="color:white; font-size: xx-large; margin-top:25px;" class="ui center aligned header">Verbindungsübersicht</h1>
+    </div>
     <div>
     
-        <h2 style="color:white; font-size: x-large;" class="ui center aligned header">Deine Verbindungen</h2>
-<!--         {% for item in result %}
-        <p style="color: black; background-color: aliceblue; border-style: solid; border-color: aliceblue; border-radius: 20px; padding:20px; margin:50px;">{{ item | striptags }}</p>
-        {% endfor %} -->
-<p>
-        {{result}}
-</p>
+        <h2 style="color:white; font-size: x-large; margin-top:50px;" class="ui center aligned header">Wetterinfo</h2>
+        <p style="color: black; background-color: aliceblue; border-style: solid; border-color: aliceblue; border-radius: 20px; padding:20px; margin:25px;">
+            {{ result[0]  }}</p>
     </div>
+
+    <div>
+    
+        <h2 style="color:white; font-size: x-large;" class="ui center aligned header">Verbindung 1</h2>
+        <p style="color: black; background-color: aliceblue; border-style: solid; border-color: aliceblue; border-radius: 20px; padding:20px; margin:25px;">
+            {{ result[1]  }}</p>
+    </div>
+
+    {% if result[2] %}
+    <div>
+    
+        <h2 style="color:white; font-size: x-large;" class="ui center aligned header">Verbindung 2</h2>
+        <p style="color: black; background-color: aliceblue; border-style: solid; border-color: aliceblue; border-radius: 20px; padding:20px; margin:25px;">
+            {{ result[2]  }}</p>
+    </div>
+
+    {% endif %}
    
 
 

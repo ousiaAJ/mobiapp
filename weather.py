@@ -24,11 +24,10 @@ def getWeather(start):
     elif "clear" in weather_description:
         weather = "klarer Himmel"
 
-
-
-    answer1 = " Temperatur = " + str(current_temperature) + " Gefühlt: " + str(felt_temp)
-    answer2 = "Wetter = " + str(weather) + ". Wind: " + str(wind) + " km/h"
-    return answer1, answer2
+    answer1 = " Temperatur = " + str(current_temperature) + ". " + " Gefühlt: " + str(felt_temp) + ". " 
+    answer2 = " Das Wetter ist " + str(weather) + ". Wind: " + str(wind) + " km/h"
+    back = answer1 + answer2
+    return back
 
 # Launcher
 #answer = getWeather("Köln")

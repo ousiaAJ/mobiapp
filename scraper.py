@@ -9,7 +9,7 @@ def scrape_KVB():
     response = urlopen(req).read()
     soup = BeautifulSoup(response, 'html.parser')
     rows = soup.find_all('div', class_='container')
-    temp = []
+    temp = ["STÖRUNGSMELDUNGEN RAUM KÖLN:  "]
 
     for row in rows:
         cells = row.findChildren(class_='number red-text')
@@ -21,13 +21,13 @@ def scrape_KVB():
     for row in rows:
         cells = row.findChildren(class_='fliesstext')
         for cell in cells:
-            text=cell.prettify
+            text=cell.getText().replace("\n", "")
             temp.append(text)
         
     for row in rows:
         cells = row.findChildren(class_='table table-striped')
         for cell in cells:
-            text2=cell.prettify
+            text2=cell.getText().replace("\n", "")
             temp.append(text2)
     #line_numbers = [int(temp) for temp in text2.split() if temp.isdigit()]
     answer = temp
