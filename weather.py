@@ -23,8 +23,10 @@ def getWeather(start):
         weather = "Schnee"
     elif "clear" in weather_description:
         weather = "klarer Himmel"
+    elif "mist" in weather_description:
+        weather = "neblig"
 
-    answer1 = " Temperatur = " + str(current_temperature) + ". " + " Gefühlt: " + str(felt_temp) + ". " 
+    answer1 = " Die Temperatur in Grad Celsius beträgt: " + str(current_temperature) + ", " + " gefühlt: " + str(felt_temp) + ". " 
     answer2 = " Das Wetter ist " + str(weather) + ". Wind: " + str(wind) + " km/h"
     back = answer1 + answer2
     return back

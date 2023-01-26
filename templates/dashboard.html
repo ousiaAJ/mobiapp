@@ -15,32 +15,68 @@
         <h1 style="color:white; font-size: xx-large; margin-top:25px;" class="ui center aligned header">Verbindungsübersicht</h1>
     </div>
     <div>
-    
         <h2 style="color:white; font-size: x-large; margin-top:50px;" class="ui center aligned header">Wetterinfo</h2>
         <p style="color: black; background-color: aliceblue; border-style: solid; border-color: aliceblue; border-radius: 20px; padding:20px; margin:25px;">
             {{ result[0]  }}</p>
     </div>
 
     <div>
-    
-        <h2 style="color:white; font-size: x-large;" class="ui center aligned header">Verbindung 1</h2>
-        <p style="color: black; background-color: aliceblue; border-style: solid; border-color: aliceblue; border-radius: 20px; padding:20px; margin:25px;">
+        <h2 style="color:white; font-size: x-large; margin-top:50px;" class="ui center aligned header">Verkehrsinfo</h2>
+        <p style="color: black; background-color: rgb(195, 82, 97); border-style: solid; border-color: aliceblue; border-radius: 20px; padding:20px; margin:25px;">
             {{ result[1]  }}</p>
     </div>
 
-    {% if result[2] %}
     <div>
     
-        <h2 style="color:white; font-size: x-large;" class="ui center aligned header">Verbindung 2</h2>
+        <h2 style="color:white; font-size: x-large;" class="ui center aligned header">Verbindung 1</h2>
         <p style="color: black; background-color: aliceblue; border-style: solid; border-color: aliceblue; border-radius: 20px; padding:20px; margin:25px;">
             {{ result[2]  }}</p>
     </div>
 
+    {% if result[3] %}
+    <div>
+    
+        <h2 style="color:white; font-size: x-large;" class="ui center aligned header">Verbindung 2</h2>
+        <p style="color: black; background-color: aliceblue; border-style: solid; border-color: aliceblue; border-radius: 20px; padding:20px; margin:25px;">
+            {{ result[3]  }}</p>
+    </div>
     {% endif %}
-   
 
+    {% if result [4] %}
+    <div>
+    
+        <h2 style="color:white; font-size: x-large;" class="ui center aligned header">Verbindung 3</h2>
+        <p style="color: black; background-color: aliceblue; border-style: solid; border-color: aliceblue; border-radius: 20px; padding:20px; margin:25px;">
+            {{ result[4]  }}</p>
+    </div>
+    {% endif %}
+    <div>
+    <h3 style="color:white; font-size: large; margin-top:10px;" class="ui center aligned header">Buche hier:</h3>
+    {% if "Auto" in result[2] %}
+    <div>
+        <a href ="https://www.share-now.com/de/de/cologne/">  <img class="ui small centered rounded image" src="../static/car.png" alt="Auto"></a>
+    </div>
 
-    <div style="margin-top:150px" class="ui center aligned container">
+    {%elif "Schiene" in result[2] %}
+    <div>
+        <a href ="https://www.vrs.de/"><img class="ui centered small rounded image" src="../static/Bus.png" alt="DB"></a>
+    </div>
+    {%elif "Leihrad" in result[2] %}
+    <div>
+        <a href ="https://www.kvb-rad.de/de/koeln/"><img class="ui centered small rounded image" src="../static/Leihrad.png" alt="Nextbike"></a>
+    </div>
+    {%elif "Bus" in result[2] %}
+    <div>
+        <a href ="https://www.vrs.de"><img class="ui centered small rounded image" src="../static/Bus.png" alt="Bus"></a>
+    </div>
+    {%elif "Fahrrad" in result[2] %}
+    <div>
+        <img class="ui centered small rounded image" src="../static/Fahrrad.png" alt="Rad">
+    </div>
+    {% endif %}
+</div>
+
+    <div style="margin-top:75px" class="ui center aligned container">
         <a href="/main" class="ui red button">Neue Anfrage</a>
     </div>
     

@@ -7,11 +7,27 @@ from datetime import datetime
 
 
 
-
 def selectSource(start, ziel, mode, datetime, selection):
+    print(mode)
     result = []
     weather = getWeather(start)
     result.append(weather)
+    if mode == ['bus'] :
+        kvb = scrape_KVB()
+        kvb_info = ' '.join(kvb)
+        result.append(kvb_info)
+    elif mode == ['transit']:
+        kvb = scrape_KVB()
+        kvb_info = ' '.join(kvb)
+        result.append(kvb_info)
+    elif mode == ['transit', 'bus']:
+        kvb = scrape_KVB()
+        kvb_info = ' '.join(kvb)
+        result.append(kvb_info)
+    else:
+        traffic_info = "Keine Verkehrsinformationen vorhanden"
+        result.append(traffic_info)
+
     # Umschreiben auf match
     if mode ==['driving']:
         result1 = carshare(start, ziel, mode, datetime)
@@ -53,6 +69,13 @@ def selectSource(start, ziel, mode, datetime, selection):
         result.append(result3)
         result5 = next(start, ziel, datetime, selection)
         result.append(result5)
+    elif mode == ['transit', 'bus', 'next']:
+        result2 = train(start, ziel, ['transit'], datetime)
+        result3 = bus(start, ziel, ['bus'], datetime)
+        result5 = next(start, ziel, datetime, selection)
+        result.append(result2)
+        result.append(result3)
+        result.append(result5)
     else:
         result.append("Kombination nicht verfügbar")
 
@@ -80,6 +103,7 @@ def train(start, ziel, mode, datetime):
     mo2="rail"
     result = direction(start, ziel, mode, mo2, datetime)
     res=json.loads(result)
+    #print(res)
     time = res['routes'][0]['legs'][0]['duration']['value']
     time = int(time/60)
     dauer = str(time)
@@ -89,11 +113,10 @@ def train(start, ziel, mode, datetime):
     ankunft = res['routes'][0]['legs'][0]['arrival_time']['value']
     an = int(ankunft)
     zeit = zeitrechner(an)
-    answer1 = "Das gewählte Verkehrsmittel ist Zug. " + " Die Fahrtdauer beträgt " + dauer + " Minuten. " + "Ankunft ist um: " + str(zeit) + " Die CO2 Emmissionen der Fahrt betragen " + co2 + " g.    " 
-    answer2 = scrape_KVB()
-    answer2 = ' '.join(answer2)
-    summary = answer1 + answer2
-    return summary
+    linie1 = res['routes'][0]['legs'][0]['steps'][1]['transit_details']['line']['short_name']
+    richtung1 = res['routes'][0]['legs'][0]['steps'][1]['transit_details']['headsign']
+    answer1 = "Das gewählte Verkehrsmittel ist Schiene. " + " Die Fahrtdauer beträgt " + dauer + " Minuten. " + "Ankunft ist um: " + str(zeit) + " Uhr. " + "Starten Sie die mit der Bahn Richtung " + richtung1 + " mit der Nummer " + linie1 + " .  Die CO2 Emmissionen betragen " + co2 + " g.  "
+    return answer1
 
 def bus(start, ziel, mode, datetime):
     mode=["transit"]
@@ -108,12 +131,11 @@ def bus(start, ziel, mode, datetime):
     zeit = zeitrechner(an)
     km = res['routes'][0]['legs'][0]['distance']['value']
     km = round(km/1000)
+    linie = res['routes'][0]['legs'][0]['steps'][1]['transit_details']['line']['short_name']
+    richtung = res['routes'][0]['legs'][0]['steps'][1]['transit_details']['headsign']
     co2 = str(km * 80)
-    answer1 = "Das gewählte Verkehrsmittel ist Bus." + " Die Fahrtdauer beträgt " + dauer + " Minuten. " + "Ankunft ist um: " + zeit + " Die CO2 Emmissionen betragen " + co2 + " g.  "
-    answer2 = scrape_KVB()
-    answer2 = ' '.join(answer2)
-    summary = answer1 + answer2
-    return summary
+    answer1 = "Das gewählte Verkehrsmittel ist Bus." + " Die Fahrtdauer beträgt " + dauer + " Minuten. " + "Ankunft ist um: " + zeit + " Uhr. " + "Nehmen Sie den Bus Richtung " + richtung + " mit der Nummer " + linie + " . "  + "Die CO2 Emmissionen betragen " + co2 + " g.  "
+    return answer1
 
 def bike(start, ziel, mode, datetime):
     mo2=""
@@ -136,7 +158,7 @@ def next(start, ziel, datetime, selection):
     result2 = direction(start, ziel, mode, mo2, datetime)
     res2 = json.loads(result2)
     dauer = res2['routes'][0]['legs'][0]['duration']['value']
-    fahrzeit = "Die Fahrtzeit beträgt: " + str(int(dauer/60)) + " Minuten. " + "Deine CO2 Emmission beträgt 0g.  "
+    fahrzeit = ". Die Fahrtzeit beträgt: " + str(int(dauer/60)) + " Minuten. " + "Deine CO2 Emmission beträgt 0g.  "
     preis = (dauer/60)/15
     preis = "Der Leihpreis beträgt: " + str(round(preis)) + " Euro"
     summary = answer1 + fahrzeit + preis
@@ -149,11 +171,13 @@ def zeitrechner(ts):
     zeit = ts.split(" ")
     return (zeit[1])
 
-""" def testfunc(start, ziel, mode, mo2, datetime):
-    result = direction(start, ziel, mode, mo2, datetime)
-    res = json.loads(result)
-    ankunft = res['routes'][0]['legs'][0]['arrival_time']['text']
-    print(ankunft) """
+"""     try:
+        richtung2 = res['routes'][0]['legs'][0]['steps'][2]['transit_details']['headsign']
+        linie2 = res['routes'][0]['legs'][0]['steps'][2]['transit_details']['line']['short_name']
+        print(linie1)
+        print(linie2)
+    except:
+        pass """
 
 # Launcher Test
 #testresult = train("Köln", "Bonn", "transit", "2023-01-22 14:00")
