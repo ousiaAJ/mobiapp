@@ -10,8 +10,11 @@ from datetime import datetime
 def selectSource(start, ziel, mode, datetime, selection):
     print(mode)
     result = []
-    weather = getWeather(start)
-    result.append(weather)
+    try:
+        weather = getWeather(start)
+        result.append(weather)
+    except:
+        result.append("Keine Wetterinfo verfügbar")
     if mode == ['bus'] :
         kvb = scrape_KVB()
         kvb_info = ' '.join(kvb)
@@ -99,10 +102,13 @@ def carshare(start, ziel, mode, datetime):
     return answer
 
 def train(start, ziel, mode, datetime):
-    print(start, ziel, mode, datetime)
     mo2="rail"
-    result = direction(start, ziel, mode, mo2, datetime)
-    res=json.loads(result)
+    try:
+        result = direction(start, ziel, mode, mo2, datetime)
+        res=json.loads(result)
+    except:
+        error = "API nicht verfügbar"
+        return error
     #print(res)
     time = res['routes'][0]['legs'][0]['duration']['value']
     time = int(time/60)
@@ -113,8 +119,12 @@ def train(start, ziel, mode, datetime):
     ankunft = res['routes'][0]['legs'][0]['arrival_time']['value']
     an = int(ankunft)
     zeit = zeitrechner(an)
-    linie1 = res['routes'][0]['legs'][0]['steps'][1]['transit_details']['line']['short_name']
-    richtung1 = res['routes'][0]['legs'][0]['steps'][1]['transit_details']['headsign']
+    try:
+        linie1 = res['routes'][0]['legs'][0]['steps'][1]['transit_details']['line']['short_name']
+        richtung1 = res['routes'][0]['legs'][0]['steps'][1]['transit_details']['headsign']
+    except:
+        linie1 = " ***nicht verfügbar*** "
+        richtung1 = " ***nicht verfügbar*** "
     answer1 = "Das gewählte Verkehrsmittel ist Schiene. " + " Die Fahrtdauer beträgt " + dauer + " Minuten. " + "Ankunft ist um: " + str(zeit) + " Uhr. " + "Starten Sie die mit der Bahn Richtung " + richtung1 + " mit der Nummer " + linie1 + " .  Die CO2 Emmissionen betragen " + co2 + " g.  "
     return answer1
 
@@ -131,8 +141,12 @@ def bus(start, ziel, mode, datetime):
     zeit = zeitrechner(an)
     km = res['routes'][0]['legs'][0]['distance']['value']
     km = round(km/1000)
-    linie = res['routes'][0]['legs'][0]['steps'][1]['transit_details']['line']['short_name']
-    richtung = res['routes'][0]['legs'][0]['steps'][1]['transit_details']['headsign']
+    try:
+        linie = res['routes'][0]['legs'][0]['steps'][1]['transit_details']['line']['short_name']
+        richtung = res['routes'][0]['legs'][0]['steps'][1]['transit_details']['headsign']
+    except:
+        linie = " ***nicht verfügbar*** "
+        richtung = " ***nicht verfügbar*** "
     co2 = str(km * 80)
     answer1 = "Das gewählte Verkehrsmittel ist Bus." + " Die Fahrtdauer beträgt " + dauer + " Minuten. " + "Ankunft ist um: " + zeit + " Uhr. " + "Nehmen Sie den Bus Richtung " + richtung + " mit der Nummer " + linie + " . "  + "Die CO2 Emmissionen betragen " + co2 + " g.  "
     return answer1
