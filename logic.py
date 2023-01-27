@@ -98,6 +98,7 @@ def carshare(start, ziel, mode, datetime):
         error = "API nicht verfügbar"
         return error
     #print(result)
+    # Timeshift Error abfangen ("Status: Invalid Request")
     km = res['routes'][0]['legs'][0]['distance']['value']
     km = round(km/1000)
     time = res['routes'][0]['legs'][0]['duration']['value']
