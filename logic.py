@@ -27,6 +27,10 @@ def selectSource(start, ziel, mode, datetime, selection):
         kvb = scrape_KVB()
         kvb_info = ' '.join(kvb)
         result.append(kvb_info)
+    elif mode == ['transit', 'bus', 'next']:
+        kvb = scrape_KVB()
+        kvb_info = ' '.join(kvb)
+        result.append(kvb_info)
     else:
         traffic_info = "Keine Verkehrsinformationen vorhanden"
         result.append(traffic_info)
@@ -87,8 +91,12 @@ def selectSource(start, ziel, mode, datetime, selection):
 
 def carshare(start, ziel, mode, datetime):
     mo2=""
-    result = direction(start, ziel, mode, mo2, datetime)
-    res = json.loads(result)
+    try:
+        result = direction(start, ziel, mode, mo2, datetime)
+        res=json.loads(result)
+    except:
+        error = "API nicht verfügbar"
+        return error
     #print(result)
     km = res['routes'][0]['legs'][0]['distance']['value']
     km = round(km/1000)
@@ -96,8 +104,13 @@ def carshare(start, ziel, mode, datetime):
     ti = time/3600
     dauer = int(time/60)
     tiR = int(ti+0.75)
-    kosten = auslesenPreis("XS", tiR, "N", km)
-    co2 = str(km * 0.180) 
+    try:
+        kosten = auslesenPreis("XS", tiR, "N", km)
+    except:
+        error = "Keine Kosteninfo verfügbar"
+        return error
+    co2 = (km * 0.180) 
+    co2 = str(round(co2, 2))
     answer = "Das gewählte Verkehrsmittel ist Auto." + " Der Preis für die Fahrt beträgt: " + str(kosten) + "€.  " + "Die Strecke beträgt " + str(km) + "km. " + "Die Fahrtzeit ist: " + str(dauer) + " Minuten. " "Deine CO2 Emmission beträgt " + co2 + " kg"
     return answer
 
@@ -125,14 +138,18 @@ def train(start, ziel, mode, datetime):
     except:
         linie1 = " ***nicht verfügbar*** "
         richtung1 = " ***nicht verfügbar*** "
-    answer1 = "Das gewählte Verkehrsmittel ist Schiene. " + " Die Fahrtdauer beträgt " + dauer + " Minuten. " + "Ankunft ist um: " + str(zeit) + " Uhr. " + "Starten Sie die mit der Bahn Richtung " + richtung1 + " mit der Nummer " + linie1 + " .  Die CO2 Emmissionen betragen " + co2 + " g.  "
+    answer1 = "Das gewählte Verkehrsmittel ist Schiene. " + " Die Fahrtdauer beträgt " + dauer + " Minuten. " + "Ankunft ist um: " + str(zeit) + " Uhr. " + "Starten Sie die Reise mit der Bahn Richtung " + richtung1 + " mit der Nummer " + linie1 + " .  Die CO2 Emmissionen betragen " + co2 + " g.  "
     return answer1
 
 def bus(start, ziel, mode, datetime):
     mode=["transit"]
     mo2="bus"
-    result = direction(start, ziel, mode, mo2, datetime)
-    res=json.loads(result)
+    try:
+        result = direction(start, ziel, mode, mo2, datetime)
+        res=json.loads(result)
+    except:
+        error = "API nicht verfügbar"
+        return error
     time = res['routes'][0]['legs'][0]['duration']['value']
     time = int(time/60)
     dauer = str(time)
@@ -162,7 +179,11 @@ def bike(start, ziel, mode, datetime):
     return answer1
 
 def next(start, ziel, datetime, selection):
-    result=nextbike(selection)
+    try:
+        result=nextbike(selection)
+    except:
+        error = "Keine Daten verfügbar"
+        return error
     if result == None:
         answer1 = "Das gewählte Verkehrsmittel ist Leihrad. Leihstation " + selection + ": Leider kein Fahrrad verfügbar. "
     else:

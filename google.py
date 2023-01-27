@@ -15,12 +15,12 @@ def direction(origin, destination, mode, mo2, when):
     response = requests.request("GET", url, headers=headers, data=payload)
     return(response.text)
 
-def time_helper(ts):
 # Timestamp Helper
+def time_helper(ts):
     ts = 1671552844
     dt_object = datetime.fromtimestamp(ts)
     print(dt_object)
 
 #Launcher
-#result=direction("Düsseldorf", "Koblenz", "transit", "2023-01-22 14:00")
+#result=direction("Düsseldorf", "Koblenz", "transit", "2023-03-22 14:00")
 #print(result)

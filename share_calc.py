@@ -33,4 +33,5 @@ def auslesenPreis(klasse, dauer, vers, km):
     csvdatei.close()
     return (ergf)
         
+#Launcher
 #auslesenPreis("M", "3 Tage", "J", 100)
