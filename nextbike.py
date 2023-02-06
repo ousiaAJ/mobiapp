@@ -15,8 +15,6 @@ def nextbike(start_list):
     result = response.text
 
     soup = BeautifulSoup(result, "lxml-xml")
-    #places_list = soup.find_all("place")
-    #placenames = soup.get("name")
     places = soup.find("place", {"name": {start}} )
     bike = places.get("bikes_available_to_rent")
     return bike

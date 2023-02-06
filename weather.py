@@ -27,7 +27,7 @@ def getWeather(start):
         weather = "neblig"
 
     answer1 = " Die Temperatur in Grad Celsius beträgt: " + str(current_temperature) + ", " + " gefühlt: " + str(felt_temp) + ". " 
-    answer2 = " Das Wetter ist " + str(weather) + ". Wind: " + str(wind) + " km/h"
+    answer2 = " Wetterbeschreibung:  " + str(weather) + ". Wind: " + str(wind) + " km/h"
     back = answer1 + answer2
     return back
 

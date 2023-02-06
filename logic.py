@@ -8,7 +8,7 @@ from datetime import datetime
 
 
 def selectSource(start, ziel, mode, datetime, selection):
-    print(mode)
+    #print(mode)
     result = []
     try:
         weather = getWeather(start)
