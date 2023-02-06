@@ -1,2 +1,5 @@
-/env/
+# Dependencies
+env/
 
+# Mac Crap
+.DS_Store
