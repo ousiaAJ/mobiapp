@@ -8,7 +8,7 @@ def direction(origin, destination, mode, mo2, when):
     when = datetime.strptime(when, '%Y-%m-%d %H:%M')
     timestamp = int(datetime.timestamp(when))
 
-    url = f"https://maps.googleapis.com/maps/api/directions/json?origin={origin}&destination={destination}&mode={mo1}&transit_mode={mo2}&departure_time={timestamp}&key=AIzaSyB238rM6g9FmFf1EGDa40AOXXdG2wtcc9U"
+    url = f"https://maps.googleapis.com/maps/api/directions/json?origin={origin}&destination={destination}&mode={mo1}&transit_mode={mo2}&departure_time={timestamp}&key=<key>"
 
     payload={}
     headers = {}
