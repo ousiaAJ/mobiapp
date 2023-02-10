@@ -8,8 +8,8 @@ def DB_API():
         conn = http.client.HTTPSConnection("apis.deutschebahn.com")
 
         headers = {
-        'DB-Client-Id': "7eec6e17aa2db2b09d76c490202112ac",
-        'DB-Api-Key': "a3854011cb83292f31f11cfa8da36ffe",
+        'DB-Client-Id': "<id>",
+        'DB-Api-Key': "<key>",
         'accept': "application/json"
         }
 
