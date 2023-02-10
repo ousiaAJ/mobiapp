@@ -2,7 +2,7 @@ import requests
 import json
 
 def getWeather(start):
-    url = f"https://api.openweathermap.org/data/2.5/weather?q={start}&appid=beeb8f10394e934265050f0207d6e4d4&units=metric"
+    url = f"https://api.openweathermap.org/data/2.5/weather?q={start}&appid=<key>&units=metric"
     response = requests.get(url)
     res = response.json()
     #print(res)
