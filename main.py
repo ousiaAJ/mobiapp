@@ -16,7 +16,7 @@ key = token_urlsafe(16)
 app = Flask(__name__)
 app.secret_key = key
 
-uri = "mongodb+srv://mobi_useradmin:3ow3rA9P0nA5X2be@cluster0.hyflz7m.mongodb.net/?retryWrites=true&w=majority"
+uri = "mongodb+srv://<user_string>"
 mongodb_client = pymongo.MongoClient(uri)
 resultdb = mongodb_client["mobi_user"]["mobi_user"].find() 
 db = mongodb_client["mobi_user"]["mobi_user"].db
